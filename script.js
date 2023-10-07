@@ -1,4 +1,3 @@
-
 let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
 let hasLiked = localStorage.getItem('hasLiked') === 'true' || false;
 
@@ -23,6 +22,15 @@ heart.addEventListener('click', () => {
         heart.classList.add('liked');
         heart.innerHTML = '&#10084;&#65039;';
         hasLiked = true;
+        updateLikes();
+    }
+    else if (hasLiked) {
+        likeCount--;
+        localStorage.setItem('likeCount', likeCount.toString());
+        localStorage.setItem('hasLiked', 'false');
+        heart.classList.remove('liked');
+        heart.innerHTML = '&#10084;';
+        hasLiked = false;
         updateLikes();
     }
 });
